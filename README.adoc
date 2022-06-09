@@ -1,0 +1,8 @@
+= Nginx docker image for Kyso
+
+This container adds third-party modules (initially only the
+https://github.com/google/ngx_brotli[ngx_brotli] one) to the official
+nginx-alpine image following the documentation available on
+https://github.com/nginxinc/docker-nginx/tree/master/modules.
+
+// vim: ts=4:sw=4:et

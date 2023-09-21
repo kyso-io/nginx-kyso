@@ -1,7 +1,7 @@
-ARG NGINX_VERSION=fixme
-FROM registry.kyso.io/docker/nginx:$NGINX_VERSION as builder
+ARG NGINX_VERSION=1.23.1-alpine
+FROM nginx:$NGINX_VERSION as builder
 
-ARG ENABLED_MODULES
+ARG ENABLED_MODULES=brotli
 
 RUN set -ex \
     && if [ "$ENABLED_MODULES" = "" ]; then \
@@ -61,7 +61,7 @@ RUN set -ex \
     done \
     && echo "BUILT_MODULES=\"$BUILT_MODULES\"" > /tmp/packages/modules.env
 
-FROM registry.kyso.io/docker/nginx:$NGINX_VERSION
+FROM nginx:$NGINX_VERSION
 COPY --from=builder /tmp/packages /tmp/packages
 RUN set -ex \
     && . /tmp/packages/modules.env \
